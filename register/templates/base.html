@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <body>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Forum 24</title>
+            <link rel="stylesheet" href="{% static 'style.css' %}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
+        </head>
+        <header>
+            <div class='navbar'>
+                <nav class="navigation hide" id="navigation">
+                    <ol class="nav-list">
+                        <span class="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
+                        {% else %}
+                        <li class="nav-item"><a href="{% url 'signin' %}">Log In</a></li>
+                        <li class="nav-item"><a href="{% url 'signup' %}">Sign Up</a></li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a href="{% url 'posts_no_slug' %}">Topics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        
+                        {% comment %} <li class="nav-item">
+                            <a href="{% url 'details_no_slug' %}">Details</a>
+                        </li> {% endcomment %}
+                    </ol>                
+                </nav>
+                <a href="#" class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
+                <div class="brand">Forum 24</div>
+            </div>
+            <!-- Search Box-->
+             <div class="search-box">
+                <div>
+                    <select name="" id="">
+                        <option value="everything">Everything</option>
+                        <option value="titles">Titles</option>
+                        <option value="descriptions">Descriptions</option>
+                    </select>
+                    <input type="text" name ="q" id="inputter" placeholder="search..."> </input>
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+                
+    
+            
+             </div>
+        </header>
+        {% block content %}
+        {% endblock content %}
+        <footer class="footer">
+            <span> &nbsp; Brett Barnes, based on Selmi Abderrahim's personal blog</span>
+        </footer>
+        <script src="{% static 'main.js' %}"></script>
+</body>
+</html>

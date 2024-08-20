@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Brett Barnes Personal Portfolio</title>
+        <link rel="stylesheet" href="{% static 'main_stylesheet.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    </head>
+    <body>
+        <header>
+            <h1> Brett Barnes</h1>
+        </header>
+        <div class='header2'>
+            <h3> Personal Portfolio </h3>
+        </div>
+        <div class='bio'>
+            <p> I am currently a senior attending the University of Richmond, with majors in Computer Science and Mathematics
+                as well as minors in Data Science & Statistics and Italian. Below you can find a few examples of projects I've worked on,
+                as well as the languages used and the setting I produced them in.
+                This website, as well as the attached forum below, was developed with the Django Python framework.
+                Thanks for checking out my portfolio! </p>
+        </div>
+
+        <div class ='table-row'>
+            <div class='project-header'>
+                <p class='title'>Forum 24 & This Website</p>
+            </div>
+            <div class='project-header' id='second'>
+                <p class='title'>SASSEMA Android App Development</p>
+            </div>
+        </div>
+        <div class ='table-row'>
+            <div class='forum d'>
+                <div class='tags'>
+                    <div class='python'>Python</div>
+                    <div class='js'>JavaScript</div>
+                    <div class='html'>HTML</div>
+                    <div class='css'>CSS</div>
+                    <div class='sql'>SQL</div>
+                    <div class='bar' id='f24bar'>|</div>
+                    <div class='setting' id='f24setting'>Personal Project</div>
+                </div>
+                <div class='mobile-setting' id='mobilesetting'>Personal Project</div>
+                <p>This forum site allows users to create accounts (mandatory), create their own posts, and interact with others'. They can comment on posts or create/engage with reply threads. To find posts, 
+                    either use the search bar at the top, click a topic that intrests you from the Home page, head to the All Topics page to view the top posts, or check out the Latest page for the most recent posts.
+                    Posts are tagged with a symbol representing its status as a locked, 'ignored,' 'newly discovered,' 'trending,' or 'top' post. You can also view forum stats at the bottom of the Home page!
+                </p>
+                <div class="buttondiv">
+                    <a class="btn" href="{% url 'home' %}">Visit Forum 24</a>
+                </div>
+            </div>
+            <div class='project-header hide' id='mobile-title'>
+                <p class='title'>SASSEMA Android App Development</p>
+            </div>
+            <div class='ema_app d'>
+                <div class='tags'>
+                    <div class='java'>Java</div>
+                    <div class='xml'>XML</div>
+                    <div class='sql'>SQL</div>
+                    <div class='bar'>|</div>
+                    <div class='setting'>Summer Internship</div>
+                </div>
+                <p>I spent ten weeks solo-developing an Android OS app for an upcoming ADHD research study. This app would generate a series of surveys (5x per day for the course of the study)
+                    at randomly generated times within specified intervals, store the data on the phone via a JSON file, and then upload it to a sever via PHP.
+                    I utilized background services, PeriodicWorkManager, threading, and AlarmManager to scheduele and deliver the notifications on-time and consistently in a real-world environment
+                    (resilient to phone updates, restarts, and resets which ordinarily clear upcoming tasks). In addition to the notifications when the survey opened, uncompleted surveys will recieve reminders. 
+
+                    Because of the proprietary nature of the code I can't share the source code itself, but attached is a video demonstration of the app's usage.
+                </p>
+                <div class="buttondiv">
+                    <a class="btn" href="https://youtu.be/MolbfYsLcek">Android App Demonstration</a>
+                </div>
+            </div>
+        </div>
+        <div class ='table-row'>
+            <div class='project-header'>
+                <p class='title'>Computer Chip Design</p>
+            </div>
+            <div class='project-header' id='second2'>
+                <p class='title'>Traffic Flow Simulator</p>
+            </div>
+        </div>
+        <div class ='table-row'>
+            <div class='mips d'>
+                <div class='tags'>
+                    <div class='cpp'>C++</div>
+                    <div class='mips' id='mips1'>MIPS Assembly</div>
+                    <div class='mips' id='mips2'>MIPS</div>
+                    <div class='binary'>Binary</div>
+                    <div class='bar'>|</div>
+                    <div class='setting'>Class Project</div>
+                </div>
+                <p>In Logisim, a lab partner and I designed a CPU from scratch, building a regilfe, ALU, control, and ROM, and connecting them with the appropriate logic gates and structure. We then
+                    expanded functionality into a full computer by adding RAM, a monitor, and a keyboard connected via a bus.
+                    We additionally wrote a MIPS Assembly compiler in C++, which would compile into binary, which would then run via our CPU's ROM.
+                    The end result was a fully functioning computer which was capable of anything written in MIPS, as well as a variety of additional pseudoinstructions,
+                    such as complex mathematics, drawing on the monitor with WASD, or digitally rendering a painting like Starry Night.
+                 </p>
+                <div class="buttondiv">
+                    <a class="btn" href="https://github.com/brett-barnes/MIPS-Computer.git">MIPS Computer</a>
+                </div>
+            </div>
+            <div class='project-header hide' id='mobile-title2'>
+                <p class='title'>Traffic Flow Simulator</p>
+            </div>
+            <div class='traffic d'>
+                <div class='tags'>
+                    <div class='cpp'>C++</div>
+                    <div class='bar'>|</div>
+                    <div class='setting'>Class Project</div>
+                </div>
+                <p>A lab partner and I developed a deterministic coordinate based traffic simulation that took as input a series of probabilities (for example, the proportion of vehicles which 
+                    would be cars, SUVs, or trucks, or the probability of a new vehicle entering southbound at any given instant) and a seed, used to generate the specific scenario.
+                    The same input probabiltiies & seeds will produce the same outcomes. We placed a heavy emphasis on encapsulation and efficiency, resulting in our code being significantly
+                    shorter than the other teams', and chose to implement factory method principles to allow reusing of code and avoid redundencies. Vehicles in this simulation will move forward
+                    whenever allowed, stopping when they are confronted with a red light, another car, or an unsafe turn (such as a left turn into oncoming traffic), and take up varying amount
+                    of space in the cooridnate grid depending on their vehicle type. 
+                </p>
+                <div class="buttondiv">
+                    <a class="btn" href="https://github.com/brett-barnes/traffic_simulation_project.git">Traffic Simulation</a>
+                </div>
+            </div>
+        </div>
+        <div class ='table-row'>
+            <div class='project-header'>
+                <p class='title'>Big Data Bowl</p>
+            </div>
+            <div class='project-header' id='second3'>
+                <p class='title'>GeoGrid II</p>
+            </div>
+        </div>
+        <div class ='table-row'>
+            <div class='forum d'>
+                <div class='tags'>
+                    <div class='r'>R</div>
+                    <div class='bar'>|</div>
+                    <div class='setting'>Personal Project</div>
+                </div>
+                <p>Hosted by the NFL and AWS, we were challenged to compute our own advanced statistics, which could be used by an NFL team to adjust their decision making.
+                    I computed Defensive and Offensive Apex Tackler Efficiency (DATE, OATE), which measure a defender's ability to bring down hard-to-tackle ball-carriers, and 
+                    ball-carriers' ability to break tackles by elite defenders.  I calculated Forced Missed Tackle Percentage for each ball-carrier, and weighed every tackle by the FMT% of the tackled ball-carrier, and by whether it was solo or assisted.
+                    Percentile scores of this weighted metric provided our first stat, DATE. Now, I was able to calculate OATE by weighing every ball-carriers' FMTs
+                    by the tackling defender's DATE- a higher score means they broke tackles from defenders who are usually strong in tackling elite ball-carriers. The variety of use cases for this stat are discussed in the readme.txt.
+                </p>
+                <div class="buttondiv">
+                    <a class="btn" href="https://github.com/brett-barnes/DataBowl.git">Big Data Bowl</a>
+                </div>
+            </div>
+            <div class='project-header hide' id='mobile-title3'>
+                <p class='title'>GeoGrid II</p>
+            </div>
+            <div class='ema_app d'>
+                <div class='tags'>
+                    <div class='python'>Python</div>
+                    <div class='js'>JavaScript</div>
+                    <div class='html'>HTML</div>
+                    <div class='css'>CSS</div>
+                    <div class='sql'>SQL</div>
+                    <div class='bar' id='ggbar'>|</div>
+                    <div class='setting' id='ggsetting'>Personal Project</div>
+                </div>
+                <div class='mobile-setting' id='mobilesetting2'>Personal Project</div>
+                <p>Currently in progress! I am working on creating an immaculate grid style game for geography, inspired by my favorite daily game GeoGrid. Unfortunately,
+                    the existing game is plagued by bugs and glitches, and I decided I wanted to create my own from scratch that would address these issues. I'm using a MySQL Database model to store information about 200 countries,
+                    and querying that database based on the user's guessed country and the relevant categories. I then use JavaScript scripts to update the page, reflecting their correct and incorrect guesses.
+                    I am also building this in Django, and it will soon be hosted alongside this page and my <a class='flink' href= {% url "home" %}> forum</a>.                </p>
+                    
+            </div>
+        </div>
+        <div class = 'contact'>
+            LinkedIn: <a href='https://www.linkedin.com/in/brett-barnes-richmond/'>Brett Barnes</a> &nbsp; &nbsp;
+            Email: <a href='mailto:someone@example.com'>brettbarnes2025@gmail.com</a>
+        </div>
+        
+
+        <script>
+            function applyMobileClass() {
+                var t = document.getElementById("second");
+                var t2 = document.getElementById("second2");
+                var t3 = document.getElementById("second3");
+                var m = document.getElementById("mobile-title");
+                var m2 = document.getElementById("mobile-title2");
+                var m3 = document.getElementById("mobile-title3");
+                var s = document.getElementById("f24setting");
+                var s2 = document.getElementById("ggsetting");
+                var b = document.getElementById("f24bar");
+                var b2 = document.getElementById("ggbar");
+                var ms = document.getElementById("mobilesetting");
+                var ms2 = document.getElementById("mobilesetting2");
+                var mips1 = document.getElementById("mips1");
+                var mips2 = document.getElementById("mips2");
+
+                if (window.innerWidth <= 1050) {
+                    t.classList.add("hide");
+                    t2.classList.add("hide");
+                    t3.classList.add("hide");
+                    m.classList.remove('hide');
+                    m2.classList.remove('hide');
+                    m3.classList.remove('hide');
+                    s.classList.add("hide");
+                    s2.classList.add("hide");
+                    b.classList.add("hide");
+                    b2.classList.add("hide");
+                    ms.classList.remove("hide");
+                    ms2.classList.remove("hide");
+                    mips1.classList.add("hide");
+                    mips2.classList.remove("hide");
+
+
+                } else {
+                    t.classList.remove("hide") 
+                    t2.classList.remove("hide") 
+                    t3.classList.remove("hide") 
+                    m.classList.add('hide');
+                    m2.classList.add('hide');
+                    m3.classList.add('hide');
+                    s.classList.remove("hide");
+                    s2.classList.remove("hide");
+                    b.classList.remove("hide");
+                    b2.classList.remove("hide");
+                    ms.classList.add("hide");
+                    ms2.classList.add("hide");
+                    mips1.classList.remove("hide");
+                    mips2.classList.add("hide");
+
+                }
+                              
+            }
+        
+            applyMobileClass(); // Run on page load
+        
+            // Optionally, run it on window resize to handle orientation changes
+            window.addEventListener('resize', applyMobileClass);
+        </script>
+        </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load hitcount_tags %}
+{% block content %}
+    <div class="container">
+
+        <!-- Navigation for pagination -->
+        <div class="navigate">
+            <span>Latest 10 Posts</span>
+        </div>
+
+        <div class="table-head">
+            <div class="status">Status</div>
+            <div class="subjects">Subjects</div>
+            <div class="replies">Replies</div>
+            <div class="last-reply">Last Reply</div>
+        </div>
+
+        {% for post in posts %}
+        <div class="table-row">
+            <div class="status"><i class="fa fa-fire"></i></div>
+            <div class="subjects"><a href="{{post.get_url}}">{{post.title}}</a></div>
+            <div class="started-by">Started by <b><a href="#">{{post.user.fullname|title}}</a></b></div>
+            <div class="replies">{{post.num_comments}} comments<br>{% get_hit_count for post %} views</div>
+            <div class="last-reply">{% if post.last_comment %}{{post.last_comment.date|date}}<br>By <b><a href="#"> {{post.last_comment.user.fullname}}</a></b>{% else %}<div>None</div>{% endif %}</div>
+        </div>
+        {% endfor %}
+        
+    </div>
+{% endblock %}

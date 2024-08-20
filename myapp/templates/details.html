@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+{% load hitcount_tags %}
+    <div class="details-container">
+        <div class="navigate">
+            <span><a href="{% url 'home' %}">Home</a> >> <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a> >> <a href="{{post.get_url}}">{{post.title}} {% if post.closed == True %} (CLOSED TOPIC) {% endif %}</a></span>
+        </div>
+        <div class="topic-container">
+            <div class="head">
+                <div class="authors">Author:</div>
+                <div class="content">Topic: {{post.title}}  (Read {% get_hit_count for post %} Times) {% if post.closed == True %} (CLOSED TOPIC) {% endif %}</div>
+            </div>
+            <div class="body">
+                <div class="authors">
+                    <div class="username"><a href="#">{{post.user.fullname|title}}</a></div>
+                    {% comment %} <div class="role">Geography Fanatic</div> {% endcomment %}
+                    <img src="{{post.user.profile_pic.url}}" alt="">
+                    <div>Posts: <u>{{author.num_posts}}</u></div>
+                    {% comment %} <div>Points: <u>{{post.user.points}}</u></div> {% endcomment %}
+                </div>
+                <div class="content">
+                    {{post.content|safe}}
+                    <br>
+                    <hr>
+                    {% if post.closed == False %}
+                    <div class="comment">
+                        <button onclick="showComment()">Comment</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if post.closed == False %}
+            <form action="." method="post">
+                {% csrf_token %} 
+                <div class="comment-area hide" id="comment-area">
+                    <textarea name="comment1" id="" placeholder="comment here"></textarea>
+                    <input type="submit" name="comment-form" value="submit"></input>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+        
+
+        {% comment %} Comments! {% endcomment %}
+    </div>
+    {% for comment in post.comments.all %}
+        <div class="comments-container">
+            <div class="body">
+                <div class="authors">
+                    <div class="username"><a href="#">{{comment.user.fullname|title}}</a></div>
+                    {% comment %} <div class="role">Geography Stickler</div> {% endcomment %}
+                    <img src="{{comment.user.profile_pic.url}}" alt="">
+                    <div>Posts: <u>{{comment.user.num_posts}}</u></div>
+                    {% comment %} <div>Points: <u>{{comment.user.points}}</u></div> {% endcomment %}
+                </div>
+                <div class="content">
+                    {{comment.content|safe}}
+                    <br>
+                    <hr>
+                    {% if post.closed == False %}
+                    <div class="comment">
+                        <button onclick="showReply('comment{{comment.id}}')">Reply</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if post.closed == False %}
+            <form action="." method="post">
+                {% csrf_token %}
+                <div class="reply-area hide" id="comment{{comment.id}}">
+                    <textarea name="reply1" id="" placeholder="reply here"></textarea>
+                    <input type="submit" name="reply-form" value="Submit"></input>
+                    <input type="hidden" name="comment-id" value="{{comment.id}}"></input>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+        
+    </div>
+
+    {% comment %} Replies! {% endcomment %}
+
+</div>
+{% for reply in comment.replies.all %}
+<div class="replies-container">
+    <div class="body">
+        <div class="authors">
+            <div class="username"><a href="#">{{reply.user.fullname|title}}</a></div>
+            {% comment %} <div class="role">Geography Stickler</div> {% endcomment %}
+            <img src="{{reply.user.profile_pic.url}}" alt="">
+            <div>Posts: <u>{{reply.user.num_posts}}</u></div>
+            {% comment %} <div>Points: <u>{{reply.user.points}}</u></div> {% endcomment %}
+        </div>
+        <div class="content">
+            {{reply.content|safe}}
+            <br>
+            <hr>
+            <div class="comment">
+                {% comment %} <button onclick="showReply('reply{{reply.id}}')">Reply</button> {% endcomment %}
+            </div>
+        </div>
+    </div>
+    {% comment %} <form action="." method="post">
+        {% csrf_token %}
+        <div class="reply-area hide" id="reply{{reply.id}}">
+            <textarea name="reply1" id="" placeholder="reply here"></textarea>
+            <input type="submit" name="reply-form" value="Submit"></input>
+            <input type="hidden" name="comment-id" value="{{comment.id}}"></input>
+        </div>
+    </form> {% endcomment %}
+</div>
+    
+</div>
+{% endfor %}
+{% endfor %}
+
+
+</div>
+
+{%endblock%}

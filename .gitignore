@@ -1,0 +1,30 @@
+# Python-specific
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.env
+.venv
+venv/
+ENV/
+env/
+*.egg-info/
+.eggs/
+*.egg
+
+# Django-specific
+*.log
+local_settings.py
+db.sqlite3
+/static/
+media/
+
+# MySQL-specific
+# (No specific MySQL files need to be ignored in a Django project, but if you have any local MySQL configuration files, you might want to ignore them)
+
+# VS Code
+.vscode/
+
+
+# Windows
+Thumbs.db

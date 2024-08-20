@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 style="text-align:center; margin-block:50px; color: #125480;">{{user}}, finish setting up your account to create posts!</h1>
+
+<div style="display: flex; justify-content: center;">
+    <form method="POST" action="."  enctype="multipart/form-data" style="display: block; width: 500px;">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div style="text-align: center; margin-top: 50px;">
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forum 24</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+        <style>
+            .navbar {
+                display: flex;
+                align-items: center; /* Vertically centers items */
+                justify-content: space-between; /* Adjusts spacing between items */
+                padding: 0 20px; /* Optional: Add some padding if needed */
+            }
+
+            .add_post_button {
+                display: flex;
+                align-items: center; /* Vertically centers the + icon */
+                font-size: 50px;
+                font-weight: 300;
+                margin-left: 100px;
+                text-decoration: none;
+            }
+
+            .add_post_button a {
+                text-decoration: none;
+                color: inherit; /* Ensure the link color is inherited */
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <nav class="navigation hide" id="navigation" style="text-align:center">
+                    <ol class="nav-list">
+                        <span class="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
+                        {% else %}
+                        <li class="nav-item"><a href="{% url 'signin' %}">Log In</a></li>
+                        <li class="nav-item"><a href="{% url 'signup' %}">Sign Up</a></li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a href="{% url 'latest_posts' %}">Latest</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'posts_no_slug' %}">All Topics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                    </ol>                
+                </nav>
+                <a href="#" class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
+                <div class="brand">Forum 24</div>
+                {% if request.user.is_authenticated %}
+                <div class="add_post_button" style="color: #639AC4"><a href="{% url 'create_post' %}">+</a></div>
+                {% endif %}
+            </div>
+            <!-- Search Box-->
+            <form action="{% url 'search_result' %}" method="GET">
+                {% comment %} {% csrf_token %}  {% endcomment %}
+                <div class="search-box">
+                    <div>
+                        <select name="search-tag" id="">
+                            <option value="everything">Everything</option>
+                            <option value="titles">Titles</option>
+                            <option value="descriptions">Descriptions</option>
+                        </select>
+                        <input type="text" name="q" id="inputter" placeholder="search...">
+                        <button type="submit" name="search"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </header>
+        {% block content %}
+        {% endblock content %}
+        <footer class="footer">
+            <span> &nbsp; Brett Barnes</span>
+            {% comment %} Taught by Selmi Abderrahim and his personal website/tutorials! {% endcomment %}
+        </footer>
+        <script src="{% static 'main.js' %}"></script>
+    </body>
+</html>
